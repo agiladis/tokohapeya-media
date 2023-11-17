@@ -8,7 +8,7 @@ function ValidateCreateUserRequest(req, res, next) {
     password: Joi.string().required(),
     // profilePicture: Joi.string().required(),
     address: Joi.string().required(),
-    memberId: Joi.number().required(),
+    // memberId: Joi.number(),
   });
 
   const { error } = schema.validate(req.body);
