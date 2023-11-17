@@ -2,9 +2,10 @@ const { PrismaClient } = require('@prisma/client');
 const ResponseTemplate = require('../helper/response.helper');
 const prisma = new PrismaClient();
 const hashPassword = require('../utils/hashPassword');
+const imagekit = require('../lib/imagekit');
 
-async function Insert(req, res) {
-  const { name, email, password, profilePicture, address, memberId } = req.body;
+async function Register(req, res) {
+  const { name, email, password, address, memberId } = req.body;
 
   try {
     const hashedPassword = await hashPassword(password);
@@ -13,9 +14,7 @@ async function Insert(req, res) {
         name: name,
         email: email,
         password: hashedPassword,
-        profilePicture: profilePicture
-          ? profilePicture
-          : `https://ui-avatars.com/api/?name=${name}&background=random`,
+        profilePicture: `https://ui-avatars.com/api/?name=${name}&background=random`,
         address: address,
         memberId: memberId,
       },
@@ -37,4 +36,4 @@ async function Insert(req, res) {
   }
 }
 
-module.exports = { Insert };
+module.exports = { Register };
