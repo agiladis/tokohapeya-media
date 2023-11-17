@@ -5,6 +5,6 @@ const {
   ValidateCreateUserRequest,
 } = require('../../middleware/validationRequest');
 
-userRouter.post('/', ValidateCreateUserRequest, Insert);
+userRouter.post('/register', Insert);
 
 module.exports = userRouter;
